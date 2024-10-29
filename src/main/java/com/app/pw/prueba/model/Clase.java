@@ -22,17 +22,15 @@ public class Clase {
     private String nombre;
 
     @NotNull
+    private String descripcion;
+
+    private String salon;
+
+    @NotNull
     private Integer horario;
 
     @NotNull
     @Size(max = 100)
     private String docente;
-
-    private String salon;
-
-    @ManyToOne
-    @JoinColumn(name = "estado_id")
-    private EstadoClase estado;
-
 
 }

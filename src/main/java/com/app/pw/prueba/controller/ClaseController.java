@@ -1,9 +1,6 @@
 package com.app.pw.prueba.controller;
 
 import com.app.pw.prueba.model.Clase;
-import com.app.pw.prueba.model.EstadoClase;
-import com.app.pw.prueba.repository.ClaseRepository;
-import com.app.pw.prueba.repository.EstadoClaseRepository;
 import com.app.pw.prueba.service.ClaseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,25 +25,15 @@ public class ClaseController {
         model.addAttribute("Clases", claseService.listarClases());
         return "clases";
     }
-
-    @Autowired
-    private EstadoClaseRepository estadoClaseRepository;
-
     @GetMapping("/clases/crearClase")
     public String mostrarFormulario(Model model) {
         model.addAttribute("clase", new Clase());
-        List<EstadoClase> estados = estadoClaseRepository.findAll();
-        model.addAttribute("estados", estados);
         return "crearClase";
     }
 
     @PostMapping("/clases")
     public String guardarClase(@Valid @ModelAttribute Clase clase, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            model.addAttribute("estados", estadoClaseRepository.findAll());
-            return "crearClase";
-        }
-        claseService.guardarClase(clase);
+            claseService.guardarClase(clase);
         return "redirect:/clases";
     }
 
@@ -61,10 +48,10 @@ public class ClaseController {
         Clase claseActual = claseService.obtenerClase(id);
         claseActual.setId(id);
         claseActual.setNombre(clase.getNombre());
+        claseActual.setDescripcion(clase.getDescripcion());
+        claseActual.setSalon(clase.getSalon());
         claseActual.setHorario(clase.getHorario());
         claseActual.setDocente(clase.getDocente());
-        claseActual.setSalon(clase.getSalon());
-        claseActual.setEstado(clase.getEstado());
 
         claseService.actualizarClase(claseActual);
         return "redirect:/clases";
