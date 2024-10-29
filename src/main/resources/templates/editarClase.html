@@ -1,13 +1,21 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Editar Clase</title>
+    <title>Edición Clase</title>
 </head>
 <body>
-<h1>Formulario para Edición de la Clase</h1>
-<form th:action="@{/clases/{id}(id=${clase.id})" th:object="${clase}" method="POST">
+<h1>Formulario para edición de Clase</h1>
+<form th:action="@{/clases/{id}(id=${clase.id})}" th:object="${clase}" method="POST">
+
     <label>Nombre de la clase:</label>
     <input type="text" th:field="*{nombre}" maxlength="20" required/><br/>
+
+    <label>Descripción: </label>
+    <input type="text" th:field="*{descripcion}" required/><br/>
+
+    <label>Salón de clase:</label>
+    <input type="text" th:field="*{salon}" /><br/>
 
     <label>Horario de la clase:</label>
     <input type="number" th:field="*{horario}" required/><br/>
@@ -15,15 +23,8 @@
     <label>Docente a cargo de la clase:</label>
     <input type="text" th:field="*{docente}" maxlength="100" required/><br/>
 
-    <label>Salón de clase:</label>
-    <input type="text" th:field="*{salon}" /><br/>
-
-    <label>Estado de clase:</label>
-    <select th:field="*{estado}">
-        <option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado.nombre}"></option>
-    </select><br/>
-
     <button type="submit">Guardar Clase</button>
 </form>
 </body>
 </html>
+

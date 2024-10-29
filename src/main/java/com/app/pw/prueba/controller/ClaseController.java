@@ -22,7 +22,7 @@ public class ClaseController {
 
     @GetMapping("/clases")
     public String listarClases(Model model) {
-        model.addAttribute("Clases", claseService.listarClases());
+        model.addAttribute("clases", claseService.listarClases());
         return "clases";
     }
     @GetMapping("/clases/crearClase")

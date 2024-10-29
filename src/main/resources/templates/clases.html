@@ -25,20 +25,21 @@
         <thead>
         <tr>
             <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Salón</th>
             <th>Horario</th>
             <th>Docente</th>
-            <th>Salón</th>
-            <th>Estado</th>
             <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="estudiante : ${clases}">
-            <td th:text="${clases.nombre}">Nombre</td>
-            <td th:text="${clases.horario}">Horario</td>
-            <td th:text="${clases.docente}">Docente</td>
-            <td th:text="${clases.salon}">Salón</td>
-            <td th:text="${clases.estado}">Estado</td>
+        <tr th:each="clase : ${clases}">
+            <td th:text="${clase.nombre}">Nombre</td>
+            <td th:text="${clase.descripcion}">Descripción</td>
+            <td th:text="${clase.salon}">Salón</td>
+            <td th:text="${clase.horario}">Horario</td>
+            <td th:text="${clase.docente}">Docente</td>
+
             <td>
                 <a th:href="@{/clases/editar/{id}(id=${clase.id})}" class="btn btn-info">Editar</a>
                 <a th:href="@{/clases/{id}(id=${clase.id})}" class="btn btn-danger">Eliminar</a>
